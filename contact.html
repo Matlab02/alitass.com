@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="az">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="favicon.ico?v=1" sizes="any">
+  <link rel="icon" type="image/png" href="favicon-32.png?v=1" sizes="32x32">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png?v=1">
+  <title>Əlaqə — Alitass</title>
+  <link rel="stylesheet" href="style.css?v=15">
+  <link rel="stylesheet" href="pages.css?v=3">
+</head>
+<body>
+  <div class="topline">💬 Sualın var? Yaz, dovşanımız sənə cavab versin!</div>
+  <header>
+    <a class="logo" href="index.html">alita<span>ss</span><i>•</i></a>
+    <a class="catalog-button" href="categories.html">☰ &nbsp; Kataloq</a>
+    <label class="search"><input placeholder="Nə axtarırsınız?"><button type="button">⌕</button></label>
+    <div class="head-actions"><a href="cart.html">🛒<small>Səbət</small></a></div>
+  </header>
+  <nav><a href="products.html">Məhsullar</a><a href="categories.html">Kateqoriyalar</a><a href="why-alitass.html">Niyə Alitass?</a><a href="contact.html">Əlaqə</a><b>+994 50 555 11 22</b></nav>
+
+  <main class="page contact">
+    <section>
+      <p class="crumb">Ana səhifə / Əlaqə</p>
+      <h1 class="page-title">Gəlin <em>danışaq!</em></h1>
+      <p class="intro">Məhsul, çatdırılma və ya sifariş barədə sualın varsa, bizə yaz.</p>
+      <div class="contact-cards">
+        <div>☎<b>+994 50 555 11 22</b><small>Hər gün 09:00 — 19:00</small></div>
+        <div>✉<b>salam@alitass.com</b><small>24 saat ərzində cavab</small></div>
+      </div>
+    </section>
+
+    <form id="requestForm" enctype="multipart/form-data">
+      <div class="contact-form-heading">
+        <span class="eyebrow">SORĞU GÖNDƏR</span>
+        <h2>Layihənizi danışaq</h2>
+        <p><span class="required">*</span> işarəli sahələr məcburidir.</p>
+      </div>
+
+      <div class="contact-form-grid">
+        <label class="form-field full">Ad və soyad <span class="required">*</span>
+          <input required name="full_name" maxlength="120" autocomplete="name" placeholder="Məs: Aysel Məmmədova">
+        </label>
+        <label class="form-field full">Nömrə <span class="required">*</span>
+          <input required name="phone" maxlength="32" autocomplete="tel" inputmode="tel" placeholder="+994 50 000 00 00">
+        </label>
+        <label class="form-field full">Şirkət adı <small>İstəyə bağlı</small>
+          <input name="company" maxlength="160" autocomplete="organization" placeholder="Məs: Alitass MMC">
+        </label>
+      </div>
+
+      <label class="form-field">Mesajınız <span class="required">*</span>
+        <textarea required name="message" maxlength="4000" placeholder="Layihəniz və ehtiyacınız barədə qısa məlumat yazın..."></textarea>
+      </label>
+
+      <div class="attachment-wrap">
+        <input class="file-input" id="attachment" name="attachment" type="file" accept=".pdf,.doc,.docx,.xls,.xlsx,.png,.jpg,.jpeg,.webp,.dwg">
+        <label class="attachment-field" for="attachment">
+          <span class="attachment-icon">📎</span>
+          <span><b>Fayl əlavə et</b><small>PDF, Word, Excel, şəkil və ya DWG · maksimum 10 MB</small></span>
+          <span class="file-action">Fayl seç</span>
+        </label>
+        <output class="attachment-name" id="attachmentName" aria-live="polite">Fayl seçilməyib</output>
+      </div>
+
+      <input class="form-honeypot" name="website" type="text" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <button class="primary" type="submit">Mesajı göndər →</button>
+      <small class="form-note">Məlumatlarınız yalnız sorğunuza cavab vermək üçün istifadə olunur.</small>
+    </form>
+  </main>
+
+  <div class="toast" id="toast"></div>
+  <script src="store.js?v=2"></script>
+  <script src="contact.js?v=2"></script>
+  <script src="nav.js?v=1"></script>
+</body>
+</html>

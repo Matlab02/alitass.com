@@ -1,0 +1,369 @@
+<!doctype html>
+<html lang="az">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <link rel="icon" href="favicon.ico?v=1" sizes="any">
+  <link rel="icon" type="image/png" href="favicon-32.png?v=1" sizes="32x32">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png?v=1">
+  <title>İdarəetmə paneli — Alitass</title>
+  <link rel="stylesheet" href="admin.css?v=3">
+</head>
+<body class="admin-shell">
+  <div class="admin-loading" id="bootLoader" aria-live="polite">
+    <span class="loader-rabbit" aria-hidden="true">🐰</span>
+    <strong>Panel hazırlanır...</strong>
+  </div>
+
+  <main class="login-view" id="loginView" hidden>
+    <section class="login-intro" aria-label="Alitass idarəetmə paneli">
+      <a class="brand" href="index.html" aria-label="Alitass ana səhifə">
+        <span>alita</span><b>ss</b><i>•</i>
+      </a>
+      <div class="intro-copy">
+        <span class="intro-kicker">ALITASS İDARƏETMƏ</span>
+        <h1>İşlərinizi<br><em>rahat idarə edin.</em></h1>
+        <p>Məhsullar, gələn sorğular və müştəri əlaqələri bir yerdə.</p>
+      </div>
+      <div class="login-illustration" aria-hidden="true">
+        <div class="illustration-sun"></div>
+        <div class="illustration-card card-one">📦<span>Məhsullar</span></div>
+        <div class="illustration-card card-two">✉️<span>Sorğular</span></div>
+        <div class="rabbit-worker">🐰<small>🔧</small></div>
+      </div>
+      <p class="intro-foot">Alitass üçün xüsusi idarəetmə paneli</p>
+    </section>
+
+    <section class="login-panel">
+      <a class="mobile-brand brand" href="index.html" aria-label="Alitass ana səhifə">
+        <span>alita</span><b>ss</b><i>•</i>
+      </a>
+      <div class="login-card">
+        <span class="panel-eyebrow">XOŞ GƏLDİNİZ</span>
+        <h2>Panelə giriş</h2>
+        <p>İdarəetmə hesabınızla daxil olun.</p>
+        <form id="loginForm" novalidate>
+          <label>
+            <span>Giriş adı</span>
+            <input id="loginUsername" name="username" type="text" autocomplete="username" placeholder="admin" required autofocus>
+          </label>
+          <label>
+            <span>Parol</span>
+            <span class="password-input">
+              <input id="loginPassword" name="password" type="password" autocomplete="current-password" placeholder="Parolunuzu yazın" required>
+              <button class="icon-button password-toggle" id="passwordToggle" type="button" aria-label="Parolu göstər" aria-pressed="false">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2.5 12s3.4-6 9.5-6 9.5 6 9.5 6-3.4 6-9.5 6-9.5-6-9.5-6Z"/><circle cx="12" cy="12" r="2.8"/></svg>
+              </button>
+            </span>
+          </label>
+          <p class="form-error" id="loginError" role="alert" hidden></p>
+          <button class="button button-primary button-full" id="loginSubmit" type="submit">
+            <span>Daxil ol</span>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg>
+          </button>
+        </form>
+        <p class="login-help">Giriş məlumatları sizə verilməyibsə, sistem inzibatçısı ilə əlaqə saxlayın.</p>
+      </div>
+    </section>
+  </main>
+
+  <div class="admin-app" id="adminApp" hidden>
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-top">
+        <a class="brand" href="index.html" aria-label="Alitass ana səhifə">
+          <span>alita</span><b>ss</b><i>•</i>
+        </a>
+        <button class="sidebar-close icon-button" id="sidebarClose" type="button" aria-label="Menyunu bağla">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg>
+        </button>
+      </div>
+
+      <p class="sidebar-label">İDARƏETMƏ</p>
+      <nav class="side-nav" aria-label="İdarəetmə menyusu">
+        <button class="side-link active" data-view-target="dashboard" type="button">
+          <span class="side-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></span>
+          Xülasə
+        </button>
+        <button class="side-link" data-view-target="products" type="button">
+          <span class="side-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7.5 12 3l8 4.5v9L12 21l-8-4.5v-9Z"/><path d="M4.4 7.7 12 12l7.6-4.3M12 12v9"/></svg></span>
+          Məhsullar
+          <b class="nav-count" id="navProductsCount">0</b>
+        </button>
+        <button class="side-link" data-view-target="categories" type="button">
+          <span class="side-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7.5 12 3l8 4.5v9L12 21l-8-4.5v-9Z"/><path d="M4.4 7.7 12 12l7.6-4.3M12 12v9"/></svg></span>
+          Kateqoriyalar
+          <b class="nav-count" id="navCategoriesCount">0</b>
+        </button>
+        <button class="side-link" data-view-target="messages" type="button">
+          <span class="side-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16v12H8l-4 4V4Z"/><path d="M8 9h8M8 12h5"/></svg></span>
+          Mesajlar
+          <b class="nav-count" id="navMessagesCount">0</b>
+        </button>
+      </nav>
+
+      <div class="sidebar-bottom">
+        <a class="site-link" href="index.html" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9"/><path d="M20 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1h5"/></svg>
+          Sayta bax
+        </a>
+        <button class="logout-link" id="logoutButton" type="button">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 5H5a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h5M14 16l4-4-4-4M8 12h10"/></svg>
+          Çıxış
+        </button>
+      </div>
+    </aside>
+    <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+
+    <main class="workspace">
+      <header class="workspace-header">
+        <button class="menu-toggle icon-button" id="menuToggle" type="button" aria-label="Menyunu aç">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+        <div class="breadcrumb"><span>Alitass</span><i>/</i><b id="breadcrumbCurrent">Xülasə</b></div>
+        <div class="header-actions">
+          <span class="sync-status" id="syncStatus"><i></i> Yeniləndi</span>
+          <button class="icon-button refresh-button" id="refreshButton" type="button" aria-label="Məlumatları yenilə">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11a8 8 0 1 0 1.4 4.5M20 4v7h-7"/></svg>
+          </button>
+          <div class="account-chip" title="Administrator"><span>AD</span><b>Admin</b></div>
+        </div>
+      </header>
+
+      <div class="workspace-content">
+        <section class="view active" id="dashboardView" data-view="dashboard">
+          <div class="page-heading dashboard-heading">
+            <div>
+              <span class="panel-eyebrow">PANELƏ ÜMUMİ BAXIŞ</span>
+              <h1>Sabahınız xeyir, <em>Admin</em> <span aria-hidden="true">👋</span></h1>
+              <p id="dashboardDate">Bu gün işlərinizi burada izləyə bilərsiniz.</p>
+            </div>
+            <button class="button button-primary" id="dashboardNewProduct" type="button">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+              Məhsul əlavə et
+            </button>
+          </div>
+
+          <div class="stat-grid" aria-label="Ümumi göstəricilər">
+            <article class="stat-card orange-stat">
+              <div class="stat-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7.5 12 3l8 4.5v9L12 21l-8-4.5v-9Z"/><path d="M4.4 7.7 12 12l7.6-4.3M12 12v9"/></svg></div>
+              <div><span>Ümumi məhsul</span><strong id="statProducts">0</strong><small id="statProductsHint">Kataloqdakı məhsullar</small></div>
+            </article>
+            <article class="stat-card blue-stat">
+              <div class="stat-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16v12H8l-4 4V4Z"/><path d="M8 9h8M8 12h5"/></svg></div>
+              <div><span>Gələn mesajlar</span><strong id="statMessages">0</strong><small id="statMessagesHint">Bütün sorğular</small></div>
+            </article>
+            <article class="stat-card yellow-stat">
+              <div class="stat-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 12h17M12 3.5v17M5.6 5.6l12.8 12.8M18.4 5.6 5.6 18.4"/></svg></div>
+              <div><span>Bugünkü sorğular</span><strong id="statToday">0</strong><small id="statTodayHint">Bu gün qəbul edilən</small></div>
+            </article>
+          </div>
+
+          <div class="dashboard-grid">
+            <section class="panel recent-messages-panel">
+              <div class="panel-header">
+                <div><h2>Son mesajlar</h2><p>Müştərilərdən gələn ən son sorğular</p></div>
+                <button class="text-button" data-open-view="messages" type="button">Hamısına bax <span>→</span></button>
+              </div>
+              <div class="mini-message-list" id="recentMessages"></div>
+            </section>
+            <section class="panel quick-panel">
+              <div class="quick-rabbit" aria-hidden="true">🐰<span>📦</span></div>
+              <div>
+                <span class="panel-eyebrow">SÜRƏTLİ ƏLAVƏ</span>
+                <h2>Yeni məhsulu<br>bir dəqiqəyə əlavə edin.</h2>
+                <p>Kataloqunuzu hər zaman aktual saxlayın.</p>
+                <button class="button button-dark" id="quickNewProduct" type="button">Məhsul əlavə et <span>→</span></button>
+              </div>
+            </section>
+          </div>
+        </section>
+
+        <section class="view" id="productsView" data-view="products" hidden>
+          <div class="page-heading">
+            <div>
+              <span class="panel-eyebrow">KATALOQ İDARƏETMƏSİ</span>
+              <h1>Məhsullar</h1>
+              <p>Kataloqdakı məhsulları əlavə edin və redaktə edin.</p>
+            </div>
+            <button class="button button-primary" id="newProductButton" type="button">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+              Məhsul əlavə et
+            </button>
+          </div>
+
+          <section class="panel catalog-panel">
+            <div class="table-toolbar">
+              <label class="search-field">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.5"/><path d="m16 16 4 4"/></svg>
+                <input id="productSearch" type="search" placeholder="Məhsul axtarın..." autocomplete="off">
+              </label>
+              <label class="select-field">
+                <span class="sr-only">Kateqoriya üzrə filtr</span>
+                <select id="productCategoryFilter"><option value="">Bütün kateqoriyalar</option></select>
+              </label>
+              <span class="table-count" id="productTableCount">0 məhsul</span>
+            </div>
+            <div class="table-scroll">
+              <table class="admin-table">
+                <thead><tr><th>MƏHSUL</th><th>KATEQORİYA</th><th>QİYMƏT</th><th>SON DƏYİŞİKLİK</th><th><span class="sr-only">Əməliyyatlar</span></th></tr></thead>
+                <tbody id="productsTable"></tbody>
+              </table>
+            </div>
+            <div class="empty-state" id="productsEmpty" hidden>
+              <span>📦</span><h3>Məhsul tapılmadı</h3><p>Axtarış və ya filtrə uyğun məhsul yoxdur.</p>
+              <button class="text-button" id="clearProductFilters" type="button">Filtrləri təmizlə</button>
+            </div>
+          </section>
+        </section>
+
+        <section class="view" id="categoriesView" data-view="categories" hidden>
+          <div class="page-heading">
+            <div>
+              <span class="panel-eyebrow">KATALOQ BÖLMƏLƏRİ</span>
+              <h1>Kateqoriyalar</h1>
+              <p>Məhsulları rahat qruplaşdırın və hər kateqoriya üçün ayrıca şəkil seçin.</p>
+            </div>
+            <button class="button button-primary" id="newCategoryButton" type="button">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+              Kateqoriya əlavə et
+            </button>
+          </div>
+
+          <section class="panel categories-panel">
+            <div class="category-toolbar">
+              <label class="search-field">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.5"/><path d="m16 16 4 4"/></svg>
+                <input id="categorySearch" type="search" placeholder="Kateqoriya axtarın..." autocomplete="off">
+              </label>
+              <span class="table-count" id="categoryCount">0 kateqoriya</span>
+            </div>
+            <div class="category-grid" id="categoryGrid"></div>
+            <div class="empty-state" id="categoriesEmpty" hidden>
+              <span>🗂️</span><h3>Kateqoriya tapılmadı</h3><p>Yeni kateqoriya əlavə etməklə kataloqunuzu daha rahat idarə edin.</p>
+              <button class="text-button" id="newCategoryEmptyButton" type="button">Kateqoriya əlavə et</button>
+            </div>
+          </section>
+        </section>
+
+        <section class="view" id="messagesView" data-view="messages" hidden>
+          <div class="page-heading">
+            <div>
+              <span class="panel-eyebrow">MÜŞTƏRİ SORĞULARI</span>
+              <h1>Gələn mesajlar</h1>
+              <p>Əlaqə formasından göndərilən bütün müraciətlər.</p>
+            </div>
+            <span class="message-total" id="messagesTotal">0 mesaj</span>
+          </div>
+
+          <div class="messages-layout">
+            <section class="panel messages-panel">
+              <div class="message-toolbar">
+                <label class="search-field">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.5"/><path d="m16 16 4 4"/></svg>
+                  <input id="messageSearch" type="search" placeholder="Ad, nömrə və ya mesajla axtar..." autocomplete="off">
+                </label>
+              </div>
+              <div class="message-list" id="messageList"></div>
+              <div class="empty-state" id="messagesEmpty" hidden>
+                <span>💬</span><h3>Hələ mesaj yoxdur</h3><p>Yeni müraciətlər bura düşəcək.</p>
+              </div>
+            </section>
+            <aside class="message-detail" id="messageDetail" aria-live="polite">
+              <div class="detail-placeholder"><span>💌</span><h2>Mesaj seçin</h2><p>Ətraflı məlumatı görmək üçün siyahıdan bir mesaj seçin.</p></div>
+            </aside>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <dialog class="modal product-modal" id="productModal" aria-labelledby="productModalTitle">
+    <form id="productForm" novalidate>
+      <input id="productId" name="id" type="hidden">
+      <header class="modal-header">
+        <div><span class="panel-eyebrow" id="productModalEyebrow">YENİ MƏHSUL</span><h2 id="productModalTitle">Məhsul əlavə et</h2></div>
+        <button class="icon-button modal-close" id="productModalClose" type="button" aria-label="Pəncərəni bağla"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button>
+      </header>
+      <div class="modal-form-grid">
+        <label class="field field-full"><span>Məhsul adı <b>*</b></span><input id="productName" name="name" type="text" maxlength="160" placeholder="Məsələn, Peşəkar drel dəsti" required></label>
+        <label class="field"><span>Kateqoriya <b>*</b></span><select id="productCategory" name="category" required><option value="" selected disabled>Kateqoriya seçin</option></select></label>
+        <label class="field"><span>Qiymət (₼) <b>*</b></span><input id="productPrice" name="price" type="number" min="0" step="0.01" inputmode="decimal" placeholder="0.00" required></label>
+        <label class="field"><span>İkon <b>*</b></span><select id="productIcon" name="icon" required><option value="toolbox">Alət çantası</option><option value="drill">Drel</option><option value="bolt">Vint və bolt</option><option value="saw">Mişar</option><option value="paint">Boya</option><option value="wrench">Açar</option><option value="lamp">İşıq</option><option value="brick">Kərpic</option></select></label>
+        <label class="field"><span>Fon rəngi</span><span class="color-field"><input id="productBg" name="bg" type="color" value="#e8f0ff"><output id="productBgValue" for="productBg">#E8F0FF</output></span></label>
+        <label class="field field-full"><span>Qısa açıqlama <small>(istəyə bağlı)</small></span><textarea id="productDescription" name="description" maxlength="500" placeholder="Məhsulun xüsusiyyətləri, istifadə sahəsi və ya ölçüsü..."></textarea></label>
+        <div class="field field-full">
+          <span>Məhsul şəkli <small>(JPG, PNG və ya WEBP, maksimum 8 MB)</small></span>
+          <div class="media-picker" id="productImagePicker">
+            <div class="media-preview" id="productImagePreview"><span class="media-placeholder">🖼️</span><img alt="Məhsul şəkil önizləməsi" hidden></div>
+            <div class="media-picker-copy">
+              <strong id="productImageName">Şəkil seçilməyib</strong>
+              <p id="productImageHint">Kartda ikonun yerinə bu şəkil görünəcək.</p>
+              <div class="media-picker-actions">
+                <input class="sr-only" id="productImageInput" type="file" accept="image/jpeg,image/png,image/webp">
+                <label class="button button-ghost button-small" for="productImageInput">Şəkil seç</label>
+                <button class="text-button media-remove" id="productImageRemove" type="button" hidden>Şəkli sil</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p class="form-error" id="productFormError" role="alert" hidden></p>
+      <footer class="modal-footer">
+        <button class="button button-ghost" id="productCancel" type="button">Ləğv et</button>
+        <button class="button button-primary" id="productSave" type="submit"><span>Saxla</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+      </footer>
+    </form>
+  </dialog>
+
+  <dialog class="modal category-modal" id="categoryModal" aria-labelledby="categoryModalTitle">
+    <form id="categoryForm" novalidate>
+      <input id="categoryId" name="id" type="hidden">
+      <header class="modal-header">
+        <div><span class="panel-eyebrow" id="categoryModalEyebrow">YENİ KATEQORİYA</span><h2 id="categoryModalTitle">Kateqoriya əlavə et</h2></div>
+        <button class="icon-button modal-close" id="categoryModalClose" type="button" aria-label="Pəncərəni bağla"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button>
+      </header>
+      <div class="modal-form-grid">
+        <label class="field field-full"><span>Kateqoriya adı <b>*</b></span><input id="categoryName" name="name" type="text" maxlength="100" placeholder="Məsələn, Elektrik alətləri" required></label>
+        <label class="field"><span>Fon rəngi</span><span class="color-field"><input id="categoryBg" name="bg" type="color" value="#e8f0ff"><output id="categoryBgValue" for="categoryBg">#E8F0FF</output></span></label>
+        <label class="field field-full"><span>Qısa açıqlama <small>(istəyə bağlı)</small></span><textarea id="categoryDescription" name="description" maxlength="500" placeholder="Bu kateqoriyada hansı məhsullar yer alır?"></textarea></label>
+        <div class="field field-full">
+          <span>Kateqoriya şəkli <small>(JPG, PNG və ya WEBP, maksimum 8 MB)</small></span>
+          <div class="media-picker" id="categoryImagePicker">
+            <div class="media-preview" id="categoryImagePreview"><span class="media-placeholder">🗂️</span><img alt="Kateqoriya şəkil önizləməsi" hidden></div>
+            <div class="media-picker-copy">
+              <strong id="categoryImageName">Şəkil seçilməyib</strong>
+              <p id="categoryImageHint">Saytdakı kateqoriya kartında bu şəkil görünəcək.</p>
+              <div class="media-picker-actions">
+                <input class="sr-only" id="categoryImageInput" type="file" accept="image/jpeg,image/png,image/webp">
+                <label class="button button-ghost button-small" for="categoryImageInput">Şəkil seç</label>
+                <button class="text-button media-remove" id="categoryImageRemove" type="button" hidden>Şəkli sil</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p class="form-error" id="categoryFormError" role="alert" hidden></p>
+      <footer class="modal-footer">
+        <button class="button button-ghost" id="categoryCancel" type="button">Ləğv et</button>
+        <button class="button button-primary" id="categorySave" type="submit"><span>Saxla</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+      </footer>
+    </form>
+  </dialog>
+
+  <dialog class="modal confirm-modal" id="confirmModal" aria-labelledby="confirmTitle">
+    <form id="confirmForm" method="dialog">
+      <div class="confirm-icon" id="confirmIcon">!</div>
+      <h2 id="confirmTitle">Silmək istəyirsiniz?</h2>
+      <p id="confirmText">Bu əməliyyat geri qaytarıla bilməz.</p>
+      <footer class="modal-footer">
+        <button class="button button-ghost" id="confirmCancel" value="cancel" type="submit">Ləğv et</button>
+        <button class="button button-danger" id="confirmAccept" value="confirm" type="submit">Sil</button>
+      </footer>
+    </form>
+  </dialog>
+
+  <div class="toast-stack" id="toastStack" aria-live="polite" aria-atomic="true"></div>
+  <script src="admin.js?v=2" defer></script>
+</body>
+</html>

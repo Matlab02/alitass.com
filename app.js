@@ -1,0 +1,4 @@
+const products=[['🧰','Uşaq alət dəsti','29.90 ₼','#dcecff'],['🔩','Rəngli vintlər','5.50 ₼','#ffe5b1'],['🪚','Mini əl mişarı','14.90 ₼','#f8d8d8'],['🎨','Akril boya dəsti','18.70 ₼','#d7efc7']];
+document.querySelector('#productsGrid').innerHTML=products.map(([icon,name,price,bg])=>`<article class="product"><div class="product-art" style="background:${bg}">${icon}</div><div class="product-info"><small>Alitass seçimi</small><h3>${name}</h3><div class="product-bottom"><span>${price}</span><button aria-label="Səbətə əlavə et">+</button></div></div></article>`).join('');
+document.querySelectorAll('.product button').forEach(button=>button.addEventListener('click',()=>{const toast=document.querySelector('#toast');toast.classList.add('show');setTimeout(()=>toast.classList.remove('show'),2200)}));
+document.querySelector('#catalogButton').addEventListener('click',()=>document.querySelector('#categories').scrollIntoView());
