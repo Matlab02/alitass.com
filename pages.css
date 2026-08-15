@@ -33,3 +33,38 @@
 .form-honeypot{height:1px!important;left:-9999px;opacity:0;position:absolute!important;width:1px!important}
 #requestForm .primary{justify-self:start}
 @media(max-width:560px){.contact-form-grid{grid-template-columns:1fr}.attachment-field{grid-template-columns:34px 1fr}.attachment-icon{height:34px;width:34px}.file-action{grid-column:2;justify-self:start}.contact-form-heading h2{font-size:27px}}
+
+/* Public inner pages: phone-first spacing and single-column fallbacks. */
+@media(max-width:760px){
+ .page{width:100%;max-width:none;overflow:hidden;padding:28px 15px 60px}
+ .crumb{font-size:11px}
+ .page-title{font-size:42px;line-height:.98;word-break:break-word}
+ .intro{font-size:13px;line-height:1.5}
+ .shop-layout{display:block;margin-top:24px}
+ .filters{display:block;margin-bottom:18px;padding:16px}
+ .filters label{display:inline-flex;font-size:12px;margin:5px 8px 5px 0}
+ .filters hr{margin:14px 0}
+ .products.full{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+ .sort{align-items:center;gap:10px;margin-bottom:12px}
+ .sort select{max-width:180px}
+ .category-list{grid-template-columns:1fr;gap:10px;margin-top:24px}
+ .cat-row{gap:11px;min-height:90px;padding:13px}
+ .cat-row b{font-size:17px}.cat-row small{font-size:11px;line-height:1.3}
+ .cart-layout{display:block;margin-top:24px}
+ .cart-items{margin-bottom:18px}.summary{padding:18px}
+ .contact{display:block}.contact-cards{margin:24px 0 20px}
+ .contact form{padding:18px}
+ .product-detail{display:flex;flex-direction:column;align-items:stretch;gap:26px;margin-top:24px}
+ .detail-art{height:280px;min-height:280px;font-size:150px}
+ .detail-art .detail-photo{padding:18px}
+ .product-detail h1.page-title{font-size:42px}
+ .product-detail h2{font-size:32px;margin:16px 0}
+ .product-detail .primary{width:100%;text-align:center}
+ .delivery{font-size:12px;line-height:1.8;margin-top:20px;padding:14px}
+}
+@media(max-width:420px){
+ .products.full{grid-template-columns:1fr}
+ .product-art{height:185px}
+ .contact-form-grid{grid-template-columns:1fr}
+ .category-list .cat-row{min-height:82px}
+}

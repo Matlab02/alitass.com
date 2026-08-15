@@ -31,3 +31,56 @@ html{overflow-y:scroll}
 }
 .hero-art .sun{z-index:0}
 .hero-art img{mix-blend-mode:normal!important;z-index:1!important}
+
+/* Mobile layout pass: keep every public view readable without horizontal overflow. */
+@media (max-width:760px){
+ html,body{max-width:100%;overflow-x:hidden}
+ header{width:100%;max-width:none;min-width:0;gap:10px;padding:12px 15px}
+ .logo{font-size:32px;letter-spacing:-1.7px}
+ .catalog-button{flex:0 0 auto;font-size:13px;padding:11px 12px;border-radius:11px}
+ .head-actions{min-width:40px;gap:8px}
+ .head-actions a{font-size:18px}
+ nav{width:100%;max-width:none;padding:0 15px;min-height:44px;gap:20px;font-size:12px;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+ nav::-webkit-scrollbar{display:none}
+ .hero-copy{min-height:0;padding:42px 22px 34px}
+ .hero-copy h1{font-size:clamp(42px,12vw,56px)}
+ .hero p{font-size:14px}
+ .hero-buttons{flex-wrap:wrap;gap:12px;margin-top:22px}
+ .promise{flex-wrap:wrap;gap:8px;margin-top:25px}
+ .hero-art{height:310px}
+ .hero-art img{width:min(355px,100%);left:50%;transform:translateX(-50%);top:-18px}
+ .sun{width:min(300px,86vw);height:min(300px,86vw);left:50%;transform:translateX(-50%);top:20px}
+ .bubble{right:12px;top:32px;font-size:11px;padding:9px 11px}
+ .tool-card{font-size:20px;padding:10px;bottom:42px}
+ .drill{left:10px}.bolt{right:12px}
+ .section{padding:58px 15px 0}
+ .section-heading{align-items:flex-start;gap:12px;margin-bottom:20px}
+ .section-heading h2{font-size:32px}
+ .section-heading>a{font-size:12px;white-space:nowrap;padding-top:8px}
+ .categories,.products{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+ .category{min-height:140px;padding:14px;border-radius:17px}
+ .category b{font-size:15px;line-height:1.05}
+ .category small{font-size:10px}
+ .product{border-radius:15px}
+ .product-art{height:145px}
+ .product-info{padding:11px 11px 13px}
+ .product-info h3{font-size:15px;line-height:1.05}
+ .product-info small{font-size:10px}
+ .product-description{font-size:10px}
+ .product-bottom{font-size:13px}
+ .product-bottom button{width:30px;height:30px;border-radius:9px}
+ .products-section{padding-bottom:55px}
+ .why{padding:48px 18px;gap:25px;margin:0;border-radius:0}
+ .why h2{font-size:38px}
+ .why p{font-size:13px}
+ .why-art{height:245px!important;min-height:245px;max-height:245px}
+ footer{grid-template-columns:1fr 1fr;gap:18px;padding:35px 15px 52px}
+ footer p{font-size:11px}
+}
+@media (max-width:420px){
+ .categories,.products{grid-template-columns:1fr}
+ .category{min-height:125px}
+ .product-art{height:180px}
+ .section-heading{display:block}
+ .section-heading>a{display:inline-block;margin-top:9px}
+}
