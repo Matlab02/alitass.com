@@ -1,6 +1,8 @@
 ---
 version: alpha
 colors:
+  primary:
+    value: "#FFBD24"
   navy:
     value: "#102B4B"
   navySurface:
@@ -29,14 +31,10 @@ spacing:
   page: "28px"
 components:
   primaryButton:
-    background: "#FFBD24"
-    color: "#102B4B"
+    backgroundColor: "#FFBD24"
+    textColor: "#102B4B"
   panel:
-    background: "#FFFFFF"
-    border: "1px solid #DBE4EE"
-omitted:
-  - section: motion
-    reason: "The catalog is task-focused; only small hover feedback is needed."
+    backgroundColor: "#FFFFFF"
 ---
 
 ## Overview
